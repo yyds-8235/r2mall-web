@@ -1,0 +1,188 @@
+/* 页脚样式 */
+.app_footer {
+    overflow: hidden;
+    background-color: #f5f5f5;
+    padding-top: 20px;
+}
+
+.app_footer .contact {
+    background: #fff;
+}
+
+.app_footer .contact .container {
+    padding: 60px 0 40px 25px;
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app_footer .contact dl {
+    height: 190px;
+    text-align: center;
+    padding: 0 72px;
+    border-right: 1px solid #f2f2f2;
+    color: #999;
+}
+
+.app_footer .contact dl:first-child {
+    padding-left: 0;
+}
+
+.app_footer .contact dl:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.app_footer .contact dt {
+    line-height: 1;
+    font-size: 18px;
+}
+
+.app_footer .contact dd {
+    margin: 36px 12px 0 0;
+    float: left;
+    width: 92px;
+    height: 92px;
+    padding-top: 10px;
+    border: 1px solid #ededed;
+    cursor: pointer;
+}
+
+.app_footer .contact dd .iconfont {
+    font-size: 36px;
+    display: block;
+    color: #666;
+}
+
+.app_footer .contact dd:hover .iconfont {
+    color: #a8071a;
+}
+
+.app_footer .contact dd:last-child {
+    margin-right: 0;
+}
+
+.app_footer .contact .qrcode {
+    width: 92px;
+    height: 92px;
+    padding: 7px;
+    border: 1px solid #ededed;
+}
+
+.app_footer .contact .qrcode img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.app_footer .contact .download {
+    padding-top: 5px;
+    font-size: 14px;
+    width: auto;
+    height: auto;
+    border: none;
+}
+
+.app_footer .contact .download span {
+    display: block;
+}
+
+.app_footer .contact .download a {
+    display: block;
+    line-height: 1;
+    padding: 10px 25px;
+    margin-top: 5px;
+    color: #fff;
+    border-radius: 2px;
+    background-color: #a8071a;
+    text-decoration: none;
+}
+
+.app_footer .contact .hotline {
+    padding-top: 20px;
+    font-size: 22px;
+    color: #666;
+    width: auto;
+    height: auto;
+    border: none;
+}
+
+.app_footer .contact .hotline small {
+    display: block;
+    font-size: 15px;
+    color: #999;
+}
+
+.app_footer .extra {
+    background-color: #333;
+}
+
+.app_footer .extra .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app_footer .slogan {
+    height: 178px;
+    line-height: 58px;
+    padding: 60px 100px;
+    border-bottom: 1px solid #434343;
+    display: flex;
+    justify-content: space-between;
+}
+
+.app_footer .slogan a {
+    height: 58px;
+    line-height: 58px;
+    color: #fff;
+    font-size: 28px;
+    text-decoration: none;
+}
+
+.app_footer .slogan a i {
+    font-size: 50px;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-weight: 100;
+}
+
+.app_footer .slogan a span {
+    vertical-align: middle;
+    text-shadow: 0 0 1px #333;
+}
+
+.app_footer .copyright {
+    height: 170px;
+    padding-top: 40px;
+    text-align: center;
+    color: #999;
+    font-size: 15px;
+}
+
+.app_footer .copyright p {
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.app_footer .copyright a {
+    color: #999;
+    line-height: 1;
+    padding: 0 10px;
+    border-right: 1px solid #999;
+    text-decoration: none;
+}
+
+.app_footer .copyright a:last-child {
+    border-right: none;
+}
+
+/* 图标字体样式占位 */
+.iconfont {
+    font-family: 'iconfont';
+    font-style: normal;
+}
+
+/* 由于没有实际的图标字体文件，这里添加一些基础样式以防止显示问题 */
+.icon-kefu:before, .icon-question:before, .icon-weixin:before, .icon-weibo:before, .icon-footer01:before, .icon-footer02:before, .icon-footer03:before {
+    content: '?';
+}

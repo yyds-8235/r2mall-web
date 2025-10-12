@@ -10,6 +10,21 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src")
     }
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          antd: ['antd'],
+          echarts: ['echarts', 'echarts-for-react']
+        }
+      }
+    }
+  },
   server: {
     open: true,
     port: 5173,

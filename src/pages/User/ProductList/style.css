@@ -1,0 +1,417 @@
+/* 振兴乡村电商主题样式 */
+.product-list-container {
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-wrapper button {
+  border-radius: 0 28px 28px 0 !important;
+  background: linear-gradient(135deg, #a8071a 0%, #a8071a 100%) !important;
+  border: 2px solid transparent !important;
+  height: 52px !important;
+  width: 60px !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+  font-size: 18px !important;
+}
+
+.search-wrapper button:hover {
+  background: linear-gradient(135deg, #a8071a 0%, #a8071a 100%) !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* 添加搜索排序区域样式 */
+.search-card {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 24px !important;
+  padding: 20px !important;
+  border-radius: 20px !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  background: #ffffff;
+}
+
+.search-sort-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.search-wrapper {
+  flex: 1;
+}
+
+.search-wrapper .ant-input-search-large {
+  width: 100%;
+}
+
+.search-wrapper .ant-input-search-large .ant-input-affix-wrapper {
+  border-radius: 28px 0px 0px 28px !important;
+  border: 2px solid #ffe1e1 !important;
+  padding: 6px 20px !important;
+  height: 52px !important;
+  background: #fafafa !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.1) !important;
+}
+
+.search-wrapper .ant-input-search-large .ant-input-affix-wrapper:hover,
+.search-wrapper .ant-input-search-large .ant-input-affix-wrapper-focused {
+  border-color: #ff7875 !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.15) !important;
+}
+
+.search-wrapper .ant-input-search-large .ant-input {
+  font-size: 15px !important;
+  color: #a8071a !important;
+  line-height: 38px !important;
+}
+
+.search-wrapper .ant-input-search-large .ant-input-prefix {
+  color: #ff7875 !important;
+}
+
+.search-wrapper .ant-input-search-large .ant-input-suffix button {
+  background: linear-gradient(135deg, #ff7875 0%, #d4380d 100%) !important;
+  border-radius: 20px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 3px 10px rgba(255, 77, 79, 0.25) !important;
+  transition: all 0.3s ease !important;
+}
+
+.search-wrapper .ant-input-search-large .ant-input-suffix button:hover {
+  background: linear-gradient(135deg, #ff4d4f 0%, #a8071a 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 77, 79, 0.35) !important;
+}
+
+.sort-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* 保留原有的排序选择器样式，并可能进行微调 */
+.sort-select {
+  width: 200px;
+}
+
+.category-tabs {
+  margin-top: 12px;
+}
+
+.category-tabs .ant-tabs-tab {
+  padding: 8px 0 !important;
+}
+
+.category-tabs .ant-tabs-tab-btn {
+  padding: 6px 16px;
+  border-radius: 18px;
+}
+
+.category-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  background: #fff1f0;
+  color: #a8071a;
+}
+
+.category-tabs .ant-tabs-ink-bar {
+  background: #ff4d4f;
+}
+
+.sort-select .ant-select-selector {
+  border-radius: 28px !important;
+  border: 2px solid #ffe1e1 !important;
+  padding: 6px 20px !important;
+  height: 52px !important;
+  background: #fafafa !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.1) !important;
+}
+
+.sort-select .ant-select-selector:hover,
+.sort-select.ant-select-focused .ant-select-selector {
+  border-color: #ff7875 !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.15) !important;
+}
+
+.sort-select .ant-select-selection-item {
+  line-height: 38px !important;
+  font-size: 15px !important;
+  color: #3b0007 !important;
+  font-weight: 500 !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .search-sort-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .search-wrapper {
+    width: 100%;
+  }
+
+  .sort-wrapper {
+    width: 100%;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+
+  .search-wrapper .ant-input-search-large .ant-input-affix-wrapper {
+    height: 48px !important;
+  }
+
+  .search-wrapper .ant-input-search-large .ant-input {
+    line-height: 34px !important;
+  }
+
+  .sort-select .ant-select-selector {
+    height: 48px !important;
+  }
+
+  .sort-select .ant-select-selection-item {
+    line-height: 34px !important;
+  }
+}
+
+/* 其他原有的样式定义保持不变 */
+.product-grid {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px !important;
+  overflow: hidden;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  background: #ffffff;
+}
+
+.product-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(255, 77, 79, 0.25) !important;
+}
+
+.product-card .ant-card-cover {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff1f0 0%, #fff0f0 100%);
+  aspect-ratio: 1 / 1;
+}
+
+.product-card .ant-card-cover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .ant-card-cover::after {
+  opacity: 1;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.1);
+}
+
+.product-card .ant-card-body {
+  padding: 16px !important;
+  flex: 0;
+}
+
+.product-card .ant-card-actions {
+  background: #fff1f0;
+  border-top: 1px solid #ffd6d6 !important;
+  padding: 0 !important;
+}
+
+.product-card .ant-card-actions>li {
+  margin: 10px 12px !important;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-name {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+  color: #a8071a;
+  line-height: 1.4;
+}
+
+.product-name:hover {
+  color: #ff4d4f;
+}
+
+.product-price {
+  font-size: 20px;
+  color: #ff6b35;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-shadow: 0 1px 2px rgba(255, 107, 53, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.product-stock {
+  color: #ff7875;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  background: #fff1f0;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid #ffccc7;
+  width: fit-content;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  height: 42px !important;
+  border-radius: 14px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  background: linear-gradient(135deg, #ff7875 0%, #d4380d 100%) !important;
+  border: none !important;
+  box-shadow: 0 3px 10px rgba(255, 77, 79, 0.25) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.add-to-cart-btn:not(:disabled):hover {
+  background: linear-gradient(135deg, #ff4d4f 0%, #a8071a 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 77, 79, 0.35) !important;
+}
+
+.add-to-cart-btn:disabled {
+  background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 20px;
+  border: 2px dashed #ffccc7;
+  box-shadow: 0 4px 16px rgba(255, 77, 79, 0.1);
+  max-width: 1200px;
+  width: 100%;
+}
+
+.loading-container {
+  min-height: 400px;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* 自定义 Spin 样式 */
+.loading-container .ant-spin-dot-item {
+  background-color: #ff4d4f !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .product-list-container {
+    padding: 16px;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+
+  .category-menu {
+    gap: 10px;
+  }
+
+  .sort-select .ant-select-selector {
+    height: 48px !important;
+  }
+
+  .sort-select .ant-select-selection-item {
+    line-height: 34px !important;
+  }
+
+  .product-card {
+    margin-bottom: 16px;
+  }
+
+  .product-name {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-stock {
+    font-size: 11px;
+  }
+
+  .add-to-cart-btn {
+    height: 40px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1199px) {
+
+  .product-grid {
+    max-width: 960px;
+  }
+
+  .loading-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-list-container {
+    padding: 32px;
+  }
+}

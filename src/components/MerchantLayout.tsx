@@ -5,7 +5,8 @@ import {
   ShoppingOutlined, 
   UserOutlined,
   LogoutOutlined,
-  MessageOutlined
+  MessageOutlined,
+  ProfileOutlined
 } from '@ant-design/icons';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -57,6 +58,11 @@ const MerchantLayout: React.FC = () => {
       key: '/merchant/products',
       label: '商品管理',
       icon: <ShoppingOutlined />
+    },
+    {
+      key: '/merchant/orders',
+      label: '订单管理',
+      icon: <ProfileOutlined />
     },
     {
       key: '/merchant/messages',

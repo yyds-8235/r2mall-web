@@ -24,11 +24,13 @@ export interface Product {
   id: number;
   merchantId: number;
   name: string;
-  image: string;
+  image: string | null;
   price: number;
   stock: number;
   description?: string;
-  status: 0 | 1; // 0: 下架, 1: 上架
+  /** 商品類別：1 蔬菜水果, 2 糧油調味, 3 肉蛋禽類, 其他 */
+  category?: number | string;
+  status: number; // 0: 下架, 1: 上架
   createTime?: string;
   updateTime?: string;
 }
@@ -52,7 +54,7 @@ export interface Order {
   userId: number;
   totalAmount: number;
   shippingAddress: string;
-  status: 0 | 1; // 0: 待支付, 1: 已支付/待发货
+  status: number; 
   deliveryTime?: string;
   createTime?: string;
   paymentTime?: string;
@@ -68,6 +70,12 @@ export interface OrderItem {
   productImage: string;
   price: number;
   quantity: number;
+}
+
+// 订单详情类型
+export interface OrderDetail {
+  orderInfo: Order;
+  items: OrderItem[];
 }
 
 // 聊天消息类型
@@ -113,6 +121,8 @@ export interface PageRequest {
   keyword?: string;
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
+  /** 商品类别筛选 */
+  category?: string;
 }
 
 // 分页响应

@@ -1,5 +1,5 @@
 import request from '@/utils/request';
-import type { Merchant, Product, ApiResponse } from '@/types';
+import type { Merchant, Product, ApiResponse, PageResponse, Order } from '@/types';
 
 // ========== 商家中心 ==========
 
@@ -27,7 +27,7 @@ export const deleteMerchantAccount = () => {
 
 // 获取我的商品
 export const getMerchantProducts = () => {
-  return request.get<any, ApiResponse<Product[]>>('/merchant/products');
+  return request.get<any, ApiResponse<PageResponse<Product>>>('/merchant/products');
 };
 
 // 上架新商品
@@ -43,5 +43,26 @@ export const updateProduct = (id: number, data: Partial<Product>) => {
 // 上下架商品
 export const updateProductStatus = (id: number, status: 0 | 1) => {
   return request.put<any, ApiResponse>(`/merchant/products/${id}/status`, { status });
+};
+// ========== 订单管理 ==========
+
+export interface MerchantOrderInfo extends Order {
+  merchantAmount?: number;
+}
+
+export const getMerchantOrders = (params: { page?: number; size?: number }) => {
+  return request.get<any, ApiResponse<PageResponse<MerchantOrderInfo>>>('/merchant/orders', { params });
+};
+
+export const getMerchantOrderDetail = (orderNo: string) => {
+  return request.get<any, ApiResponse<any>>(`/merchant/orders/${orderNo}`);
+};
+
+export const shipMerchantOrder = (orderNo: string) => {
+  return request.post<any, ApiResponse>(`/merchant/orders/${orderNo}/ship`);
+};
+
+export const updateMerchantOrderAddress = (orderNo: string, shippingAddress: string) => {
+  return request.put<any, ApiResponse>(`/merchant/orders/${orderNo}/address`, { shippingAddress });
 };
 

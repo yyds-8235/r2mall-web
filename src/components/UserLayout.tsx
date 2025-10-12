@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Badge, Avatar, Dropdown, Button } from 'antd';
+import Footer from './Footer';
 import {
   ShoppingCartOutlined,
   UserOutlined,
@@ -104,6 +105,7 @@ const UserLayout: React.FC = () => {
       <Content style={{ padding: '24px', background: '#f0f2f5' }}>
         <Outlet />
       </Content>
+      <Footer />
     </Layout>
   );
 };

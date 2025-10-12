@@ -1,5 +1,5 @@
 import request from '@/utils/request';
-import type { Order, ApiResponse, PageResponse } from '@/types';
+import type { Order, OrderDetail, ApiResponse, PageResponse } from '@/types';
 
 // 创建订单
 export interface CreateOrderRequest {
@@ -26,6 +26,11 @@ export const getOrderList = () => {
 
 // 查看订单详情
 export const getOrderDetail = (orderNo: string) => {
-  return request.get<any, ApiResponse<Order>>(`/user/orders/${orderNo}`);
+  return request.get<any, ApiResponse<OrderDetail>>(`/user/orders/${orderNo}`);
+};
+
+// 更新订单状态
+export const updateOrderStatus = (orderNo: string, status: number) => {
+  return request.put<any, ApiResponse>(`/user/orders/${orderNo}/status`, { status });
 };
 

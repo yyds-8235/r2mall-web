@@ -1,0 +1,128 @@
+/* 頁面容器樣式 */
+.home-container {
+    padding: 24px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-content {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.home-panel {
+    background-color: #fff;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px 16px 16px;
+    }
+
+    .head {
+        padding: 40px 0;
+        display: flex;
+        align-items: flex-end;
+
+        h3 {
+            flex: 1;
+            font-size: 32px;
+            font-weight: normal;
+            margin-left: 6px;
+            height: 35px;
+            line-height: 35px;
+            margin-bottom: 0;
+
+            small {
+                font-size: 16px;
+                color: #999;
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+/* 主视觉 CTA 样式 */
+.cta-card {
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #a8071a 0%, #a8071a 100%) !important;
+    border: none !important;
+}
+
+.cta-content {
+    text-align: center;
+    color: #fff;
+    padding: 0;
+}
+
+.cta-title {
+    color: #fff !important;
+    margin-bottom: 16px !important;
+}
+
+.cta-description {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+/* 轮播图样式 */
+.carousel-card {
+    margin-bottom: 24px;
+    border: none !important;
+}
+
+.carousel-container {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+/* 商品卡片样式 */
+.product-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.product-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.product-name {
+    font-weight: 600;
+    color: #a8071a;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    color: #f5222d;
+    font-weight: 700;
+}
+
+/* 优势卡片样式 */
+.advantages-title {
+    margin-bottom: 24px !important;
+}
+
+.advantage-card {
+    text-align: center;
+    height: 100%;
+}
+
+.advantage-icon {
+    margin-bottom: 16px;
+}

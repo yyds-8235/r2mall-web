@@ -3,6 +3,7 @@ import { Card, Form, Input, Select, DatePicker, Button, Upload, message, Modal }
 import { UploadOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { getUserProfile, updateUserProfile, updatePassword, deleteAccount } from '@/apis/user';
+import { uploadFile } from '@/apis/file'; // 导入文件上传API
 import { updateUserInfo, clearUserInfo } from '@/store/modules/user';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -16,6 +17,7 @@ const UserProfile: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [passwordModalVisible, setPasswordModalVisible] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>(''); // 用于存储头像URL
 
   useEffect(() => {
     fetchProfile();
@@ -28,24 +30,43 @@ const UserProfile: React.FC = () => {
         ...res.data,
         dateOfBirth: res.data.dateOfBirth ? dayjs(res.data.dateOfBirth) : null
       });
+      if (res.data.avatar) {
+        setAvatarUrl(res.data.avatar);
+      }
     } catch (error) {
       console.error('获取个人信息失败:', error);
     }
   };
 
+  // 更新个人信息处理函数
   const handleUpdateProfile = async () => {
     setLoading(true);
     try {
       const values = await form.validateFields();
       const updateData = {
         ...values,
+        avatar: avatarUrl, // 确保在更新时包含头像URL
         dateOfBirth: values.dateOfBirth ? values.dateOfBirth.format('YYYY-MM-DD') : null
       };
+      
+      // 创建要更新的用户信息对象，只包含可能被修改的字段
+      const modifiedUserData = {
+        avatar: updateData.avatar,
+        gender: updateData.gender,
+        dateOfBirth: updateData.dateOfBirth
+      };
+      
+      // 调用API更新后端数据
       const res = await updateUserProfile(updateData);
-      dispatch(updateUserInfo(res.data));
-      message.success('个人信息更新成功');
+      
+      if (res.code === 200) {
+        // 只将修改的数据更新到Redux store，而不使用后端返回的数据
+        dispatch(updateUserInfo(modifiedUserData));
+        message.success('个人信息更新成功');
+      }
     } catch (error) {
       console.error('更新个人信息失败:', error);
+      message.error('更新个人信息失败');
     } finally {
       setLoading(false);
     }
@@ -91,17 +112,38 @@ const UserProfile: React.FC = () => {
     });
   };
 
+  // 图片上传前的处理函数
+  const handleBeforeUpload = async (file: File) => {
+    try {
+      // 调用文件上传API
+      const res = await uploadFile(file);
+      // 设置头像URL
+      setAvatarUrl(res.data);
+      // 更新表单中的头像字段值
+      form.setFieldValue('avatar', res.data);
+      message.success('头像上传成功');
+    } catch (error) {
+      console.error('头像上传失败:', error);
+      message.error('头像上传失败');
+    }
+    return false; // 阻止默认上传行为，因为我们已经手动处理了上传
+  };
+
   return (
-    <div>
-      <Card title="个人信息" extra={<Button onClick={() => setPasswordModalVisible(true)}>修改密码</Button>}>
+    <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', maxWidth: '1200px' }}>
+        <Card title="个人信息" extra={<Button onClick={() => setPasswordModalVisible(true)}>修改密码</Button>}>
         <Form form={form} layout="vertical" onFinish={handleUpdateProfile}>
           <Form.Item name="avatar" label="头像">
             <Upload
               listType="picture-card"
               maxCount={1}
-              beforeUpload={() => {
-                message.info('头像上传功能需要配置文件服务器');
-                return false;
+              beforeUpload={handleBeforeUpload}
+              fileList={avatarUrl ? [{ uid: '1', name: 'avatar.jpg', status: 'done', url: avatarUrl }] : []}
+              onRemove={() => {
+                setAvatarUrl('');
+                form.setFieldValue('avatar', '');
+                return true;
               }}
             >
               <div>
@@ -166,6 +208,7 @@ const UserProfile: React.FC = () => {
           </Form.Item>
         </Form>
       </Modal>
+      </div>
     </div>
   );
 };

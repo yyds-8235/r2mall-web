@@ -1,0 +1,347 @@
+/* 支付页面样式 */
+.payment-container {
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-header {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-button {
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  /* border: 2px solid #ffd6d6 !important; */
+  color: #a8071a !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.back-button:hover {
+  background: #fff1f0 !important;
+  border-color: #ff7875 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.15) !important;
+}
+
+.payment-title {
+  color: #a8071a !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
+}
+
+.payment-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px;
+}
+
+.error-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* 订单信息卡片 */
+.order-info-card {
+  border-radius: 16px !important;
+  /* border: 2px solid #ffd6d6 !important; */
+  box-shadow: 0 4px 16px rgba(255, 77, 79, 0.1) !important;
+  background: #ffffff !important;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.amount-text {
+  font-size: 20px !important;
+  color: #ff6b35 !important;
+  font-weight: bold !important;
+}
+
+/* 支付方式卡片 */
+.payment-method-card {
+  border-radius: 16px !important;
+  border: 2px solid #e8f5e9 !important;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.1) !important;
+  background: #ffffff !important;
+}
+
+.payment-method-group {
+  width: 100%;
+}
+
+.payment-option {
+  width: 100% !important;
+  margin-bottom: 16px !important;
+  padding: 16px !important;
+  border: 2px solid #f0f0f0 !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.payment-option:hover {
+  border-color: #ff7875 !important;
+  background: #fff1f0 !important;
+}
+
+.payment-option.ant-radio-wrapper-checked {
+  border-color: #ff4d4f !important;
+  background: #fff2e8 !important;
+}
+
+.payment-option-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.payment-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.wechat-icon {
+  background: linear-gradient(135deg, #ff4d4f 0%, #a8071a 100%);
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+}
+
+.alipay-icon {
+  background: linear-gradient(135deg, #ff7875 0%, #d4380d 100%);
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+}
+
+.payment-text {
+  flex: 1;
+}
+
+.payment-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #a8071a;
+  margin-bottom: 4px;
+}
+
+.payment-desc {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 二维码卡片 */
+.qrcode-card {
+  border-radius: 16px !important;
+  /* border: 2px solid #ffd6d6 !important; */
+  box-shadow: 0 4px 16px rgba(255, 77, 79, 0.1) !important;
+  background: #ffffff !important;
+}
+
+.qrcode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.qrcode-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+}
+
+.qrcode-image {
+  position: relative;
+  padding: 20px;
+  background: #ffffff;
+  /* border: 2px solid #ffd6d6; */
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.qrcode-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.qrcode-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-amount {
+  font-size: 24px !important;
+  color: #ff6b35 !important;
+  font-weight: bold !important;
+}
+
+.payment-tip {
+  font-size: 14px !important;
+  color: #666 !important;
+}
+
+.i-paid-button {
+  margin-top: 12px;
+  height: 44px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #ff7875 0%, #d4380d 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3) !important;
+}
+
+/* 支付成功状态 */
+.payment-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 64px;
+  color: #ff4d4f;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  color: #ff4d4f !important;
+  margin: 0 !important;
+}
+
+.success-desc {
+  color: #666 !important;
+  font-size: 16px !important;
+}
+
+.success-button {
+  height: 48px !important;
+  border-radius: 12px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #ff7875 0%, #d4380d 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.success-button:hover {
+  background: linear-gradient(135deg, #ff4d4f 0%, #a8071a 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 77, 79, 0.4) !important;
+}
+
+/* 支付说明卡片 */
+.payment-tips-card {
+  border-radius: 16px !important;
+  /* border: 2px solid #ffd6d6 !important; */
+  box-shadow: 0 4px 16px rgba(255, 77, 79, 0.1) !important;
+  background: #ffffff !important;
+}
+
+.payment-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tip-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tip-item:last-child {
+  border-bottom: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 16px;
+  }
+
+  .payment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .payment-content {
+    gap: 16px;
+  }
+
+  .payment-option-content {
+    gap: 12px;
+  }
+
+  .payment-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .qrcode-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .payment-amount {
+    font-size: 20px !important;
+  }
+
+  .success-icon {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .payment-container {
+    padding: 32px;
+  }
+
+  .qrcode-img {
+    width: 240px;
+    height: 240px;
+  }
+}

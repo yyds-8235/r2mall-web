@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button, InputNumber, message, Spin, Descriptions, Image } from 'antd';
-import { ShoppingCartOutlined, ShoppingOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, ShoppingOutlined, CustomerServiceOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '@/apis/product';
@@ -8,6 +8,7 @@ import { addToCart } from '@/store/modules/cart';
 import type { Product } from '@/types';
 import type { RootState } from '@/store';
 import ChatWindow from '@/components/ChatWindow';
+import './style.css';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,37 +65,51 @@ const ProductDetail: React.FC = () => {
   };
 
   if (loading) {
-    return <Spin spinning={loading} />;
+    return (
+      <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <Spin spinning={loading} />
+      </div>
+    );
   }
 
   if (!product) {
-    return <Card>商品不存在</Card>;
+    return (
+      <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', maxWidth: '1200px' }}>
+          <Card>商品不存在</Card>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <Card>
+    <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', maxWidth: '1200px' }}>
+        <div className="detail-back">
+        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>
+          返回
+        </Button>
+      </div>
+      <Card className="detail-card">
         <Row gutter={24}>
           <Col xs={24} md={10}>
             <Image
-              src={product.image}
+              src={product.image || '/placeholder-image.jpg'}
               alt={product.name}
-              style={{ width: '100%', borderRadius: '8px' }}
+              className="detail-image"
             />
           </Col>
           <Col xs={24} md={14}>
-            <h1 style={{ fontSize: '28px', marginBottom: '16px' }}>{product.name}</h1>
-            <div style={{ fontSize: '32px', color: '#f5222d', fontWeight: 'bold', marginBottom: '24px' }}>
-              ¥{product.price}
-            </div>
-            <Descriptions column={1} style={{ marginBottom: '24px' }}>
+            <h1 className="detail-title">{product.name}</h1>
+            <div className="detail-price">¥{product.price}</div>
+            <Descriptions column={1} className="detail-desc">
               <Descriptions.Item label="库存">{product.stock}</Descriptions.Item>
               <Descriptions.Item label="状态">
                 {product.status === 1 ? '在售' : '已下架'}
               </Descriptions.Item>
             </Descriptions>
-            <div style={{ marginBottom: '24px' }}>
-              <span style={{ marginRight: '16px' }}>数量：</span>
+            <div className="detail-qty">
+              <span>数量：</span>
               <InputNumber
                 min={1}
                 max={product.stock}
@@ -102,7 +117,7 @@ const ProductDetail: React.FC = () => {
                 onChange={(value) => setQuantity(value || 1)}
               />
             </div>
-            <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
+            <div className="detail-actions">
               <Button
                 type="primary"
                 size="large"
@@ -134,8 +149,8 @@ const ProductDetail: React.FC = () => {
         </Row>
       </Card>
 
-      <Card title="商品详情" style={{ marginTop: '24px' }}>
-        <p>{product.description || '暂无详细描述'}</p>
+      <Card title="商品详情" className="detail-info-card">
+        <p className="detail-info-text">{product.description || '暂无详细描述'}</p>
       </Card>
 
       {chatVisible && product && (
@@ -146,6 +161,7 @@ const ProductDetail: React.FC = () => {
           toUserName="商家"
         />
       )}
+      </div>
     </div>
   );
 };

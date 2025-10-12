@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Descriptions, Table, Tag, Button, message, Steps } from 'antd';
+import { Card, Descriptions, Table, Tag, Button, Steps, Modal, message } from 'antd';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getOrderDetail, payOrder } from '@/apis/order';
+import { getOrderDetail, updateOrderStatus } from '@/apis/order';
 import type { Order, OrderItem } from '@/types';
 
 const OrderDetail: React.FC = () => {
   const { orderNo } = useParams<{ orderNo: string }>();
   const navigate = useNavigate();
   const [order, setOrder] = useState<Order | null>(null);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -20,7 +21,8 @@ const OrderDetail: React.FC = () => {
     setLoading(true);
     try {
       const res = await getOrderDetail(orderNo!);
-      setOrder(res.data);
+      setOrder(res.data.orderInfo);
+      setOrderItems(res.data.items);
     } catch (error) {
       console.error('获取订单详情失败:', error);
     } finally {
@@ -28,15 +30,29 @@ const OrderDetail: React.FC = () => {
     }
   };
 
-  const handlePay = async () => {
+  const handlePay = () => {
     if (!orderNo) return;
-    try {
-      await payOrder(orderNo);
-      message.success('支付成功');
-      fetchOrderDetail();
-    } catch (error) {
-      console.error('支付失败:', error);
-    }
+    navigate(`/user/payment/${orderNo}`);
+  };
+
+  const handleConfirmReceipt = () => {
+    if (!orderNo) return;
+    Modal.confirm({
+      title: '确认收货',
+      content: '确认已收到商品？收货后订单将标记为已完成。',
+      okText: '确认收货',
+      cancelText: '取消',
+      onOk: async () => {
+        try {
+          await updateOrderStatus(orderNo, 3);
+          message.success('确认收货成功');
+          fetchOrderDetail();
+        } catch (error) {
+          console.error('确认收货失败:', error);
+          message.error('确认收货失败');
+        }
+      }
+    });
   };
 
   const columns = [
@@ -74,20 +90,35 @@ const OrderDetail: React.FC = () => {
   ];
 
   if (!order) {
-    return <Card loading={loading}>订单不存在</Card>;
+    return (
+      <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', maxWidth: '1200px' }}>
+          <Card loading={loading}>订单不存在</Card>
+        </div>
+      </div>
+    );
   }
 
-  const currentStep = order.status === 0 ? 0 : 1;
+  const getCurrentStep = () => {
+    switch (order.status) {
+      case 0: return 1; // 待支付
+      case 1: return 2; // 已支付
+      case 2: return 3; // 待收货
+      case 3: return 4; // 已完成
+      default: return 0;
+    }
+  };
 
   return (
-    <div>
-      <Card style={{ marginBottom: '16px' }}>
+    <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', maxWidth: '1200px' }}>
+        <Card style={{ marginBottom: '16px' }}>
         <Steps
-          current={currentStep}
+          current={getCurrentStep()}
           items={[
             { title: '提交订单', description: order.createTime },
             { title: '支付订单', description: order.paymentTime },
-            { title: '等待发货' },
+            { title: '等待发货', description: order.deliveryTime },
             { title: '确认收货' }
           ]}
         />
@@ -97,9 +128,16 @@ const OrderDetail: React.FC = () => {
         <Descriptions column={2}>
           <Descriptions.Item label="订单号">{order.orderNo}</Descriptions.Item>
           <Descriptions.Item label="订单状态">
-            <Tag color={order.status === 0 ? 'orange' : 'green'}>
-              {order.status === 0 ? '待支付' : '已支付'}
-            </Tag>
+            {(() => {
+              const statusMap = {
+                0: { text: '待支付', color: 'orange' },
+                1: { text: '已支付', color: 'blue' },
+                2: { text: '待收货', color: 'purple' },
+                3: { text: '已完成', color: 'green' }
+              };
+              const statusInfo = statusMap[order.status as keyof typeof statusMap] || statusMap[0];
+              return <Tag color={statusInfo.color}>{statusInfo.text}</Tag>;
+            })()}
           </Descriptions.Item>
           <Descriptions.Item label="收货地址">{order.shippingAddress}</Descriptions.Item>
           <Descriptions.Item label="订单金额">
@@ -115,7 +153,7 @@ const OrderDetail: React.FC = () => {
       <Card title="商品清单" style={{ marginBottom: '16px' }}>
         <Table
           columns={columns}
-          dataSource={order.items}
+          dataSource={orderItems}
           rowKey="id"
           pagination={false}
         />
@@ -131,9 +169,20 @@ const OrderDetail: React.FC = () => {
         </Card>
       )}
 
+      {order.status === 2 && (
+        <Card>
+          <div style={{ textAlign: 'right' }}>
+            <Button type="primary" size="large" onClick={handleConfirmReceipt}>
+              确认收货
+            </Button>
+          </div>
+        </Card>
+      )}
+
       <Button onClick={() => navigate('/user/orders')} style={{ marginTop: '16px' }}>
         返回订单列表
       </Button>
+      </div>
     </div>
   );
 };

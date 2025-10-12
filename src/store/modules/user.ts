@@ -18,6 +18,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUserInfo: (state, action: PayloadAction<{ userInfo: User | Merchant; token: string; role: 'user' | 'merchant' }>) => {
+      
       state.userInfo = action.payload.userInfo;
       state.token = action.payload.token;
       state.role = action.payload.role;

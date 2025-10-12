@@ -4,7 +4,7 @@ import { message } from 'antd';
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://43.136.41.61:8082/api',
   timeout: 10000
 });
 
@@ -27,26 +27,26 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     const res: ApiResponse = response.data;
-    
+
     // 如果返回的状态码不是200，则显示错误信息
     if (res.code !== 200 && res.code !== 0) {
       message.error(res.message || '请求失败');
-      
+
       // 401: Token过期或未登录
       if (res.code === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('userInfo');
         window.location.href = '/login';
       }
-      
+
       return Promise.reject(new Error(res.message || '请求失败'));
     }
-    
+
     return res as any;
   },
   (error) => {
     console.error('请求错误：', error);
-    
+
     if (error.response) {
       // 服务器返回了错误状态码
       switch (error.response.status) {
@@ -75,7 +75,7 @@ request.interceptors.response.use(
       // 其他错误
       message.error(error.message || '请求失败');
     }
-    
+
     return Promise.reject(error);
   }
 );

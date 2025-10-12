@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Input, Button, Upload, message, Modal } from 'antd';
 import { UploadOutlined, ShopOutlined } from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '@/store';
+import { useDispatch } from 'react-redux';
 import { getMerchantProfile, updateMerchantProfile, updateMerchantPassword, deleteMerchantAccount } from '@/apis/merchant';
+import { uploadFile } from '@/apis/file'; // 导入文件上传API
 import { updateUserInfo, clearUserInfo } from '@/store/modules/user';
 import { useNavigate } from 'react-router-dom';
 
 const MerchantProfile: React.FC = () => {
   const [form] = Form.useForm();
   const [passwordForm] = Form.useForm();
-  const { userInfo } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [passwordModalVisible, setPasswordModalVisible] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>(''); // 用于存储头像URL
 
   useEffect(() => {
     fetchProfile();
@@ -24,6 +24,9 @@ const MerchantProfile: React.FC = () => {
     try {
       const res = await getMerchantProfile();
       form.setFieldsValue(res.data);
+      if (res.data.avatar) {
+        setAvatarUrl(res.data.avatar);
+      }
     } catch (error) {
       console.error('获取商家信息失败:', error);
     }
@@ -33,14 +36,48 @@ const MerchantProfile: React.FC = () => {
     setLoading(true);
     try {
       const values = await form.validateFields();
-      const res = await updateMerchantProfile(values);
-      dispatch(updateUserInfo(res.data));
-      message.success('店铺信息更新成功');
+      const updateData = {
+        ...values,
+        avatar: avatarUrl // 确保在更新时包含头像URL
+      };
+      
+      // 创建要更新的商家信息对象，只包含可能被修改的字段
+      const modifiedMerchantData = {
+        avatar: updateData.avatar,
+        shopName: updateData.shopName
+      };
+      
+      // 调用API更新后端数据
+      const res = await updateMerchantProfile(updateData);
+      
+      if (res.code === 200) {
+        // 只将修改的数据更新到Redux store，而不使用后端返回的数据
+        dispatch(updateUserInfo(modifiedMerchantData));
+        message.success('店铺信息更新成功');
+      }
     } catch (error) {
       console.error('更新店铺信息失败:', error);
+      message.error('更新店铺信息失败');
     } finally {
       setLoading(false);
     }
+  };
+
+  // 图片上传前的处理函数
+  const handleBeforeUpload = async (file: File) => {
+    try {
+      // 调用文件上传API
+      const res = await uploadFile(file);
+      // 设置头像URL
+      setAvatarUrl(res.data);
+      // 更新表单中的头像字段值
+      form.setFieldValue('avatar', res.data);
+      message.success('头像上传成功');
+    } catch (error) {
+      console.error('头像上传失败:', error);
+      message.error('头像上传失败');
+    }
+    return false; // 阻止默认上传行为，因为我们已经手动处理了上传
   };
 
   const handleUpdatePassword = async () => {
@@ -85,15 +122,18 @@ const MerchantProfile: React.FC = () => {
 
   return (
     <div>
-      <Card title="店铺信息" extra={<Button onClick={() => setPasswordModalVisible(true)}>修改密码</Button>}>
-        <Form form={form} layout="vertical" onFinish={handleUpdateProfile}>
+      <Card title="店铺信息" extra={<Button onClick={() => setPasswordModalVisible(true)}>修改密码</Button>}>        
+        <Form form={form} layout="vertical" onFinish={handleUpdateProfile}>          
           <Form.Item name="avatar" label="店铺头像">
             <Upload
               listType="picture-card"
               maxCount={1}
-              beforeUpload={() => {
-                message.info('头像上传功能需要配置文件服务器');
-                return false;
+              beforeUpload={handleBeforeUpload}
+              fileList={avatarUrl ? [{ uid: '1', name: 'avatar.jpg', status: 'done', url: avatarUrl }] : []}
+              onRemove={() => {
+                setAvatarUrl('');
+                form.setFieldValue('avatar', '');
+                return true;
               }}
             >
               <div>

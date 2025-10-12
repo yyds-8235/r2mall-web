@@ -1,0 +1,58 @@
+{
+  "id": "5038651",
+  "name": "mall",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2674476",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "4936987",
+      "name": "weibo",
+      "font_class": "weibo",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
+      "icon_id": "5532887",
+      "name": "公众号",
+      "font_class": "gongzhonghao",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "5785699",
+      "name": "item-price",
+      "font_class": "item-price",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "8685582",
+      "name": "物流_快递",
+      "font_class": "wuliu_kuaidi",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "11838164",
+      "name": "新鲜",
+      "font_class": "xinxian",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "34515507",
+      "name": "问题反馈",
+      "font_class": "wentifankui",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    }
+  ]
+}

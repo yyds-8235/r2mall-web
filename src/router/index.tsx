@@ -15,11 +15,14 @@ import Cart from '@/pages/User/Cart';
 import Checkout from '@/pages/User/Checkout';
 import Orders from '@/pages/User/Orders';
 import OrderDetail from '@/pages/User/OrderDetail';
+import Payment from '@/pages/User/Payment';
 import UserProfile from '@/pages/User/Profile';
 
 // 商家端页面
 import MerchantDashboard from '@/pages/Merchant/Dashboard';
 import MerchantProducts from '@/pages/Merchant/Products';
+import MerchantOrders from '@/pages/Merchant/Orders';
+import MerchantOrderDetail from '@/pages/Merchant/Orders/Detail';
 import MerchantProfile from '@/pages/Merchant/Profile';
 import MerchantMessages from '@/pages/Merchant/Messages';
 
@@ -69,6 +72,10 @@ export const router = createBrowserRouter([
         element: <OrderDetail />
       },
       {
+        path: 'payment/:orderNo',
+        element: <Payment />
+      },
+      {
         path: 'profile',
         element: <UserProfile />
       }
@@ -89,6 +96,14 @@ export const router = createBrowserRouter([
       {
         path: 'products',
         element: <MerchantProducts />
+      },
+      {
+        path: 'orders',
+        element: <MerchantOrders />
+      },
+      {
+        path: 'orders/:orderNo',
+        element: <MerchantOrderDetail />
       },
       {
         path: 'profile',

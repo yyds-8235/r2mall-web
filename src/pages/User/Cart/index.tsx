@@ -48,7 +48,7 @@ const Cart: React.FC = () => {
       key: 'product',
       render: (product: CartItem['product']) => (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={product.image} alt={product.name} style={{ width: 80, height: 80, objectFit: 'cover', marginRight: 16 }} />
+          <img src={product.image || ''} alt={product.name} style={{ width: 80, height: 80, objectFit: 'cover', marginRight: 16 }} />
           <div>{product.name}</div>
         </div>
       )
@@ -101,19 +101,24 @@ const Cart: React.FC = () => {
 
   if (items.length === 0) {
     return (
-      <Card>
-        <Empty description="购物车是空的">
-          <Button type="primary" onClick={() => navigate('/user/products')}>
-            去购物
-          </Button>
-        </Empty>
-      </Card>
+      <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', maxWidth: '1200px' }}>
+          <Card>
+            <Empty description="购物车是空的">
+              <Button type="primary" onClick={() => navigate('/user/products')}>
+                去购物
+              </Button>
+            </Empty>
+          </Card>
+        </div>
+      </div>
     );
   }
 
   return (
-    <div>
-      <Card>
+    <div style={{ padding: '24px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ width: '100%', maxWidth: '1200px' }}>
+        <Card>
         <Table
           rowSelection={{
             selectedRowKeys,
@@ -138,6 +143,7 @@ const Cart: React.FC = () => {
           </div>
         </div>
       </Card>
+      </div>
     </div>
   );
 };
