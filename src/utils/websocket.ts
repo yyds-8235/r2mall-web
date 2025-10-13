@@ -12,7 +12,7 @@ class WebSocketClient {
 
   // 连接WebSocket
   connect(fromRole: 'user' | 'merchant', toId: string | number) {
-    this.url = `ws://43.136.41.61:8082/im/${fromRole}/${toId}`;
+    this.url = `ws://localhost:8082/im/${fromRole}/${toId}`;
     
     try {
       this.ws = new WebSocket(this.url);

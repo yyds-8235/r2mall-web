@@ -60,8 +60,8 @@ const MerchantOrderDetail: React.FC = () => {
         <Descriptions column={2}>
           <Descriptions.Item label="订单号">{orderInfo.orderNo}</Descriptions.Item>
           <Descriptions.Item label="状态">
-            <Tag color={orderInfo.status === 0 ? 'orange' : orderInfo.status === 1 ? 'blue' : 'green'}>
-              {orderInfo.status === 0 ? '待支付' : orderInfo.status === 1 ? '待发货' : '已发货'}
+            <Tag color={orderInfo.status === 0 ? 'orange' : orderInfo.status === 1 ? 'purple': orderInfo.status === 2 ? 'blue' : 'green'}>
+              {orderInfo.status === 0 ? '待支付' : orderInfo.status === 1 ? '待发货': orderInfo.status === 2 ? '已发货' : '已完成'}
             </Tag>
           </Descriptions.Item>
           <Descriptions.Item label="收货地址">{orderInfo.shippingAddress}</Descriptions.Item>
