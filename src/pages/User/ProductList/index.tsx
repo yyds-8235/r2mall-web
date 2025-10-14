@@ -52,7 +52,7 @@ const ProductList: React.FC = () => {
     setSearchParams({ ...searchParams, sortBy, sortOrder: sortOrder as 'asc' | 'desc' });
   };
 
-  const categories = ['蔬菜水果', '粮油调味', '肉蛋禽类', '其他'];
+  const categories = ['蔬菜水果', '粮油调味', '肉蛋禽类','休闲零食', '其他'];
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({ product, quantity: 1 }));

@@ -93,7 +93,7 @@ const MerchantOrders: React.FC = () => {
                   text = '已完成';
                   break;
               default:
-                  color = 'default';
+                  color = 'grey';
                   text = '未知状态';
                   break;
           }

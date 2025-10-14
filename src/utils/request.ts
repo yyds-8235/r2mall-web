@@ -37,7 +37,7 @@ request.interceptors.response.use(
       if (res.code === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('userInfo');
-        window.location.href = '/login';
+        window.location.href = '/#/login';
       }
 
       return Promise.reject(new Error(res.message || '请求失败'));
@@ -55,7 +55,7 @@ request.interceptors.response.use(
           message.error('未登录或登录已过期');
           localStorage.removeItem('token');
           localStorage.removeItem('userInfo');
-          window.location.href = '/login';
+          window.location.href = '/#/login';
           break;
         case 403:
           message.error('没有权限访问');
