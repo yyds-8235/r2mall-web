@@ -118,18 +118,18 @@ const MerchantProducts: React.FC = () => {
     {
       title: '商品图片',
       dataIndex: 'image',
-      key: 'image',
+      key: 'image', align: 'center' as const,
       render: (image: string) => <Image src={image} width={60} height={60} style={{ objectFit: 'cover' }} />
     },
     {
       title: '商品名称',
       dataIndex: 'name',
-      key: 'name'
+      key: 'name', align: 'center' as const
     },
     {
       title: '商品类别',
       dataIndex: 'category',
-      key: 'category',
+      key: 'category', align: 'center' as const,
       render: (v: number | string) => {
         const map: Record<string, { text: string; color: string }> = {
           '蔬菜水果': { text: '蔬菜水果', color: 'green' },
@@ -145,18 +145,18 @@ const MerchantProducts: React.FC = () => {
     {
       title: '价格',
       dataIndex: 'price',
-      key: 'price',
+      key: 'price', align: 'center' as const,
       render: (price: number) => <span>¥{price}</span>
     },
     {
       title: '库存',
       dataIndex: 'stock',
-      key: 'stock'
+      key: 'stock', align: 'center' as const
     },
     {
       title: '状态',
       dataIndex: 'status',
-      key: 'status',
+      key: 'status', align: 'center' as const,
       render: (status: number, record: Product) => (
         <Switch
           checked={status === 1}
@@ -168,7 +168,7 @@ const MerchantProducts: React.FC = () => {
     },
     {
       title: '操作',
-      key: 'action',
+      key: 'action', align: 'center' as const,
       render: (record: Product) => (
         <Button
           type="link"

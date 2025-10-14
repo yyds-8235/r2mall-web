@@ -4,7 +4,8 @@ import { message } from 'antd';
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: 'http://43.136.41.61:8082/api',
+  // baseURL: 'http://43.136.41.61:8082/api',
+  baseURL: 'http://localhost:8082/api',
   timeout: 10000
 });
 
@@ -14,7 +15,7 @@ request.interceptors.request.use(
     // 从localStorage获取token
     const token = localStorage.getItem('token');
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
     }
     return config;
   },

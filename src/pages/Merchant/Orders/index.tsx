@@ -62,13 +62,48 @@ const MerchantOrders: React.FC = () => {
   };
 
   const columns = [
-    { title: '订单号', dataIndex: 'orderNo', key: 'orderNo' },
-    { title: '金额', dataIndex: 'totalAmount', key: 'totalAmount', render: (v: number) => <span style={{ color: '#f5222d', fontWeight: 600 }}>¥{v}</span> },
-    { title: '地址', dataIndex: 'shippingAddress', key: 'shippingAddress' },
-    { title: '状态', dataIndex: 'status', key: 'status', render: (s: number) => <Tag color={s === 0 ? 'orange' : s === 1 ? 'blue' : 'green'}>{s === 0 ? '待支付' : s === 1 ? '待发货' : '已发货'}</Tag> },
-    { title: '下单时间', dataIndex: 'createTime', key: 'createTime' },
+    { title: '订单号', dataIndex: 'orderNo', key: 'orderNo', align: 'center' as const},
+    { title: '金额', dataIndex: 'totalAmount', key: 'totalAmount', align: 'center' as const, render: (v: number) => <span style={{ color: '#f5222d', fontWeight: 600 }}>¥{v}</span> },
+    { title: '地址', dataIndex: 'shippingAddress', align: 'center' as const, key: 'shippingAddress' },
+    { 
+      title: '状态', 
+      dataIndex: 'status', 
+      key: 'status', 
+      align: 'center' as const, 
+      render: (s: number) => {
+          // 增加对状态 3 (已完成) 的处理
+          let color: string;
+          let text: string;
+  
+          switch (s) {
+              case 0:
+                  color = 'orange';
+                  text = '待支付';
+                  break;
+              case 1:
+                  color = 'purple';
+                  text = '待发货';
+                  break;
+              case 2:
+                  color = 'blue';
+                  text = '已发货';
+                  break;
+              case 3: 
+                  color = 'green'; 
+                  text = '已完成';
+                  break;
+              default:
+                  color = 'default';
+                  text = '未知状态';
+                  break;
+          }
+  
+          return <Tag color={color}>{text}</Tag>;
+      } 
+  },
+    { title: '下单时间', dataIndex: 'createTime', key: 'createTime', align: 'center' as const },
     {
-      title: '操作', key: 'action', render: (record: MerchantOrderInfo) => (
+      title: '操作', key: 'action', align: 'center' as const, render: (record: MerchantOrderInfo) => (
         <div style={{ display: 'flex', gap: 8 }}>
           <Button type="link" onClick={() => navigate(`/merchant/orders/${record.orderNo}`)}>查看详情</Button>
           {record.status === 1 && (
