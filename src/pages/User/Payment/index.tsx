@@ -44,9 +44,9 @@ const Payment: React.FC = () => {
 
   const getQRCodeImage = () => {
     if (paymentMethod === 'wechat') {
-      return 'http://t3xyra4t9.hn-bkt.clouddn.com/wechat.jfif'; // 微信支付二维码
+      return 'https://khy.hhhwww.top/wechat.jfif'; // 微信支付二维码
     } else {
-      return 'http://t3xyra4t9.hn-bkt.clouddn.com/alipay.jfif'; // 支付宝二维码
+      return 'https://khy.hhhwww.top/alipay.jfif'; // 支付宝二维码
     }
   };
 
@@ -150,7 +150,7 @@ const Payment: React.FC = () => {
           >
             <Radio value="wechat" className="payment-option">
               <div className="payment-option-content">
-                <div ><img src={'http://t3xyra4t9.hn-bkt.clouddn.com/wechat.png'} className="payment-icon wechat-icon" alt="微信支付" /></div>
+                <div ><img src={'https://khy.hhhwww.top/wechat.png'} className="payment-icon wechat-icon" alt="微信支付" /></div>
                 <div className="payment-text">
                   <div className="payment-name">微信支付</div>
                   <div className="payment-desc">推荐使用微信扫码支付</div>
@@ -159,7 +159,7 @@ const Payment: React.FC = () => {
             </Radio>
             <Radio value="alipay" className="payment-option">
               <div className="payment-option-content">
-                <div><img src={'http://t3xyra4t9.hn-bkt.clouddn.com/ali.png'} className="payment-icon alipay-icon" alt="支付宝支付" /></div>
+                <div><img src={'https://khy.hhhwww.top/ali.png'} className="payment-icon alipay-icon" alt="支付宝支付" /></div>
                 <div className="payment-text">
                   <div className="payment-name">支付宝</div>
                   <div className="payment-desc">使用支付宝扫码支付</div>

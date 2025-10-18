@@ -75,13 +75,13 @@ const UserHome: React.FC = () => {
       <Card className="carousel-card">
         <Carousel autoplay dots className="carousel-container">
           <div>
-            <img src={'http://t3xyra4t9.hn-bkt.clouddn.com/banner1.png'} alt="banner0" className="carousel-image" />
+            <img src={'https://khy.hhhwww.top/banner1.png'} alt="banner0" className="carousel-image" />
           </div>
           <div>
-            <img src={'http://t3xyra4t9.hn-bkt.clouddn.com/banner0.png'} alt="banner2" className="carousel-image" />
+            <img src={'https://khy.hhhwww.top/banner0.png'} alt="banner2" className="carousel-image" />
           </div>
           <div>
-            <img src={'http://t3xyra4t9.hn-bkt.clouddn.com/banner2.png'} alt="banner3" className="carousel-image" />
+            <img src={'https://khy.hhhwww.top/banner2.png'} alt="banner3" className="carousel-image" />
           </div>
         </Carousel>
       </Card>

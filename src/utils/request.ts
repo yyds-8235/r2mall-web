@@ -4,7 +4,7 @@ import { message } from 'antd';
 
 // 创建axios实例
 const request = axios.create({
-  // baseURL: 'http://43.136.41.61:8082/api',
+  // baseURL: 'https://funliu.fun/mall/api',
   baseURL: 'http://localhost:8082/api',
   timeout: 10000
 });
@@ -37,7 +37,7 @@ request.interceptors.response.use(
       if (res.code === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('userInfo');
-        window.location.href = '/#/login';
+        window.location.href = `${window.location.origin}${window.location.pathname}#/login`;
       }
 
       return Promise.reject(new Error(res.message || '请求失败'));
@@ -55,7 +55,7 @@ request.interceptors.response.use(
           message.error('未登录或登录已过期');
           localStorage.removeItem('token');
           localStorage.removeItem('userInfo');
-          window.location.href = '/#/login';
+          window.location.href = `${window.location.origin}${window.location.pathname}#/login`;
           break;
         case 403:
           message.error('没有权限访问');

@@ -10,7 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src")
     }
   },
-  base: './', // 确保使用相对路径
+  base: '/mall/', // 确保使用相对路径
   build: {
     assetsDir: 'assets',
     outDir: 'dist',
