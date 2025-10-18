@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createHashRouter, Navigate } from 'react-router-dom';
 
 // 布局组件
 import UserLayout from '@/components/UserLayout';
@@ -26,7 +26,7 @@ import MerchantOrderDetail from '@/pages/Merchant/Orders/Detail';
 import MerchantProfile from '@/pages/Merchant/Profile';
 import MerchantMessages from '@/pages/Merchant/Messages';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <Navigate to="/user/home" replace />

@@ -10,9 +10,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src")
     }
   },
+  base: './', // 确保使用相对路径
   build: {
-    outDir: 'dist',
     assetsDir: 'assets',
+    outDir: 'dist',
     sourcemap: false,
     minify: 'terser',
     rollupOptions: {

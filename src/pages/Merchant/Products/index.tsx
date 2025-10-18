@@ -135,6 +135,7 @@ const MerchantProducts: React.FC = () => {
           '蔬菜水果': { text: '蔬菜水果', color: 'green' },
           '粮油调味': { text: '粮油调味', color: 'gold' },
           '肉蛋禽类': { text: '肉蛋禽类', color: 'orange' },
+          '休闲零食': { text: '休闲零食', color: 'pink' },
           '其他': { text: '其他', color: 'blue' }
         };
         const key = (v ?? '其他').toString();
@@ -225,6 +226,7 @@ const MerchantProducts: React.FC = () => {
               <Select.Option value={'蔬菜水果'}>蔬菜水果</Select.Option>
               <Select.Option value={'粮油调味'}>粮油调味</Select.Option>
               <Select.Option value={'肉蛋禽类'}>肉蛋禽类</Select.Option>
+              <Select.Option value={'休闲零食'}>休闲零食</Select.Option>
               <Select.Option value={'其他'}>其他</Select.Option>
             </Select>
           </Form.Item>
